@@ -41,9 +41,6 @@ CREATE TABLE `company` (
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`username`, `email`, `password`, `com_name`, `rep_name`, `phone`, `recruit_yr`) VALUES
-('googs', 'google@gmail.com', 'a8cdd4f9ce6b0b3a1f18842fe173e985', 'Google', NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -71,9 +68,6 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`rollno`, `email`, `password`, `first_name`, `middle_name`, `last_name`, `phone`, `course`, `branch`, `grad_yr`, `is_alumnus`, `grade10`, `grade12`, `CPI`) VALUES
-('1701CS32', 'sparsh_1701cs32@iitp.ac.in', '25f9e794323b453885f5181f1b624d0b', 'Sparsh', 'Saarubhai', 'Mittal', '1234567890', 'B.Tech.', 'CS', 2022, 1, NULL, NULL, NULL),
-('2101CS32', 'harsh_2101cs32@iitp.ac.in', '31f5254220360cf7c2121f6e2e4fa9e4', 'Harsh', '', 'Loomba', '9414707653', 'B.Tech.', 'CS', 2025, 0, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
