@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2023 at 03:15 PM
+-- Generation Time: Apr 17, 2023 at 08:48 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -82,6 +82,45 @@ INSERT INTO `company` (`username`, `email`, `password`, `com_name`, `rep_name`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `company_cutoff`
+--
+
+CREATE TABLE `company_cutoff` (
+  `username` varchar(50) NOT NULL,
+  `course` enum('B.Tech. / B.S.','M.Tech.','Ph.D.') NOT NULL,
+  `branch` char(2) NOT NULL,
+  `cutoff` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_interview`
+--
+
+CREATE TABLE `company_interview` (
+  `username` varchar(50) NOT NULL,
+  `round` tinyint(4) NOT NULL,
+  `mode` enum('Online','Offline') NOT NULL,
+  `type` enum('Written','Coding','Interview') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_job`
+--
+
+CREATE TABLE `company_job` (
+  `username` varchar(50) NOT NULL,
+  `field` varchar(256) NOT NULL,
+  `position` varchar(256) NOT NULL,
+  `package` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `student`
 --
 
@@ -108,6 +147,7 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`rollno`, `email`, `password`, `first_name`, `middle_name`, `last_name`, `phone`, `course`, `branch`, `grad_yr`, `is_alumnus`, `grade10`, `grade12`, `CPI`) VALUES
 ('1701CS32', 'sparsh_1701cs32@iitp.ac.in', '25f9e794323b453885f5181f1b624d0b', 'Sparsh', 'Saarubhai', 'Mittal', '1234567890', 'B.Tech.', 'CS', 2022, 1, NULL, NULL, NULL),
+('2101AI42', 'tejas_2101ai42@iitp.ac.in', '25f9e794323b453885f5181f1b624d0b', 'Tejas', '', 'Budhwal', '1234567890', 'B.Tech.', 'AI', 2025, 0, NULL, NULL, NULL),
 ('2101CS32', 'harsh_2101cs32@iitp.ac.in', '31f5254220360cf7c2121f6e2e4fa9e4', 'Harsh', '', 'Loomba', '9414707653', 'B.Tech.', 'CS', 2025, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -150,6 +190,30 @@ ALTER TABLE `alumni_placement`
   ADD KEY `alumni_placement_fk1` (`rollno`);
 
 --
+-- Indexes for table `company`
+--
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `company_cutoff`
+--
+ALTER TABLE `company_cutoff`
+  ADD PRIMARY KEY (`username`,`course`,`branch`);
+
+--
+-- Indexes for table `company_interview`
+--
+ALTER TABLE `company_interview`
+  ADD PRIMARY KEY (`username`,`round`);
+
+--
+-- Indexes for table `company_job`
+--
+ALTER TABLE `company_job`
+  ADD KEY `company_job_fk1` (`username`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
@@ -177,6 +241,24 @@ ALTER TABLE `student_placement`
 --
 ALTER TABLE `alumni_placement`
   ADD CONSTRAINT `alumni_placement_fk1` FOREIGN KEY (`rollno`) REFERENCES `student` (`rollno`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `company_cutoff`
+--
+ALTER TABLE `company_cutoff`
+  ADD CONSTRAINT `company_cutoff_fk1` FOREIGN KEY (`username`) REFERENCES `company` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `company_interview`
+--
+ALTER TABLE `company_interview`
+  ADD CONSTRAINT `company_interview_fk1` FOREIGN KEY (`username`) REFERENCES `company` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `company_job`
+--
+ALTER TABLE `company_job`
+  ADD CONSTRAINT `company_job_fk1` FOREIGN KEY (`username`) REFERENCES `company` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_aoi`
