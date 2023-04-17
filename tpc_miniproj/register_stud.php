@@ -113,7 +113,7 @@ if (isset($_SESSION['log_msg'])) {
             <input placeholder="IITP Webmail" type="email" name="email" pattern="[A-Za-z]+_\d\d\d\d[A-Za-z][A-Za-z][0-9]+@iitp\.ac\.in" title="Invalid IITP webmail address." required />
             <br>
 
-            <input placeholder="First Name" type="text" name="first_name" pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Names cannot contain digits or special characters." required />
+            <input placeholder="First Name" type="text" name="first_name" pattern="^[a-zA-Z][a-zA-Z\s]$" title="Names cannot contain digits or special characters." required />
             <br>
 
             <input placeholder="Middle Name" type="text" name="mid_name" pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Names cannot contain digits or special characters." />
