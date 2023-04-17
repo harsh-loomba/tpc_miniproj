@@ -61,7 +61,7 @@ if (isset($_SESSION['log_msg'])) {
             <span style="color:red;"><?= $log ?></span>
 
 
-            <input placeholder="Company Name" type="text" name="com_name" required />
+            <input placeholder="Company Name" type="text" pattern=".{0,256}" name="com_name" required />
             <br>
 
             <input placeholder="Username" type="text" name="uname" pattern=".{0,100}" title="Username should be between 8 to 100 characters." required />
