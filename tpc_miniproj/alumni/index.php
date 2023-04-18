@@ -37,6 +37,11 @@ if (isset($_SESSION['log_msg'])) {
 
     <a href="../profile_stud.php">Profile</a>
     <br>
+    
+     <div class="container">
+        <a href="placement.php">Add Placement Information</a>
+    </div>
+    <br>
 
     <a href="http://localhost/tpc_miniproj/logout.php">Log Out</a>
 
