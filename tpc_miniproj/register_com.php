@@ -85,16 +85,16 @@ if (isset($_SESSION['log_msg'])) {
             <input placeholder="Company Name" type="text" pattern=".{0,256}" name="com_name" required />
             <br>
 
-            <input placeholder="Username" type="text" name="uname" pattern=".{0,100}" title="Username should be between 8 to 100 characters." required />
+            <input placeholder="Username" type="text" name="uname" pattern=".{0,100}" title="Username should be between 8 to 100 characters." required size="30"/>
             <br>
 
-            <input placeholder="Email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Invalid email address." required />
+            <input placeholder="Email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Invalid email address." required size="30"/>
             <br>
 
-            <input placeholder="Password" type="password" id="password" name="password" pattern=".{8,100}" title="Passwords should be between 8 to 100 characters." onkeyup='check();' required />
+            <input placeholder="Password" type="password" id="password" name="password" pattern=".{8,100}" title="Passwords should be between 8 to 100 characters." onkeyup='check();' required size="30"/>
             <br>
 
-            <input placeholder="Confirm Password" type="password" id="confirm_pass" name="confirm_pass" onkeyup='check();' required />
+            <input placeholder="Confirm Password" type="password" id="confirm_pass" name="confirm_pass" onkeyup='check();' required size="30"/>
             <br>
 
             <span id='message'></span>

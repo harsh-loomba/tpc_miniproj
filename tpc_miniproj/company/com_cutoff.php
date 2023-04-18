@@ -91,20 +91,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             window.history.replaceState(null, null, window.location.href);
         }
     </script>
+
+    <style>
+        h1 {text-align: center;}
+        .form-center {
+            display:flex;
+            justify-content:center;
+        }
+        .container{
+            width: 100%;
+            text-align: center;
+        }
+        .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        border: 3px solid #fff;;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="../mvp.css"/>
 </head>
 
 <body>
+    <br>
     <div class="session">
 
 
         <!-- Register form -->
-
+        <div class="form-center">
         <form method="post" action="" name="add_job">
 
-            <h4>Set Eligibility Criteria</h4>
+            <h1>Set Eligibility Criteria</h1>
 
             <!-- Printing log message -->
+            <div class="container">
             <span style="color:red;"><?= $log ?></span>
+            </div>
             <br>
 
             Course:
@@ -140,11 +164,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             Cutoff CPI: <input placeholder="cutoff" name="cutoff" type="number" min=0 max=10 step=0.01 required>
             <br>
 
-
+            <div class="center">
             <button type="submit">Add / Update Criteria</button>
+            </div>
             <br>
 
+            <div class="container">
             <a href="index.php">Back to Home</a>
+            </div>
+        </form>
+        </div>
     </div>
 </body>
 

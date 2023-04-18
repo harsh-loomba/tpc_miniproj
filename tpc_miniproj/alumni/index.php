@@ -37,8 +37,8 @@ if (isset($_SESSION['log_msg'])) {
 
     <a href="../profile_stud.php">Profile</a>
     <br>
-
-    <div class="container">
+    
+     <div class="container">
         <a href="placement.php">Add Placement Information</a>
     </div>
     <br>

@@ -68,35 +68,67 @@ if (isset($_SESSION['log_msg'])) {
             window.history.replaceState(null, null, window.location.href);
         }
     </script>
+
+    <style>
+        h1 {text-align: center;}
+        .form-center {
+            display:flex;
+            justify-content:center;
+        }
+        .container{
+            width: 100%;
+            text-align: center;
+        }
+        .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        border: 3px solid #fff;;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="../mvp.css"/>
 </head>
 
 <body>
+    <br>
     <div class="session">
 
 
         <!-- Register form -->
-
+        <div class="form-center">
         <form method="post" action="" name="add_job">
 
-            <h4>Add Jobs</h4>
+            <h1>Add Jobs</h1>
 
             <!-- Printing log message -->
+            <div class="container">
             <span style="color:red;"><?= $log ?></span>
+            </div>
             <br>
 
-            <input placeholder="Field" type="text" name="field" required />
+            <input placeholder="Field" type="text" name="field" required size="30"/>
             <br>
 
-            <input placeholder="Position" type="text" name="position" required />
+            <input placeholder="Position" type="text" name="position" required size="30"/>
+            <br>
+            
+            <div class="center">
+            <input placeholder="Package" type="number" name="package" required/>
+            </div>
             <br>
 
-            <input placeholder="Package" type="number" name="package" required />
-            <br>
-
+            <div class="center">
             <button type="submit">Add Job</button>
+            </div>
             <br>
 
+            <div class="container">
             <a href="index.php">Back to Home</a>
+            </div>
+        </form>
+        </div>
     </div>
 </body>
 

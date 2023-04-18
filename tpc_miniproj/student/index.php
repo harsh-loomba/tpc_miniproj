@@ -27,13 +27,10 @@ if (isset($_SESSION['log_msg'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <style>
-        h1 {
-            text-align: center;
-        }
-
-        .container {
-            width: 100%;
-            text-align: center;
+        h1 {text-align: center;}
+        .container{
+        width: 100%;
+        text-align: center;
         }
     </style>
     <link rel="stylesheet" type="text/css" href="../mvp.css" />
@@ -42,30 +39,31 @@ if (isset($_SESSION['log_msg'])) {
 <body>
     <h1>Student Home</h1>
     <br>
-
+    
     <div class="container">
-        <span style="color:red;"><?= $log ?></span>
+    <span style="color:red;"><?= $log ?></span>
     </div>
     <br>
 
     <div class="container">
-        <a href="../profile_stud.php">Profile</a>
+    <a href="../profile_stud.php">Profile</a>
     </div>
     <br>
 
     <div class="container">
-        <a href="placement.php">Add Placement Information</a>
+    <a href="../update_marks.php">Update Marks</a>
     </div>
     <br>
 
     <div class="container">
-        <a href="../company_info_display.php">Company Information</a>
+    <a href="../company_info_display.php">Company Information</a>
     </div>
     <br>
-
+    
     <div class="container">
-        <a href="../logout.php">Log Out</a>
+    <a href="../logout.php">Log Out</a>
     </div>
+
 </body>
 
 </html>

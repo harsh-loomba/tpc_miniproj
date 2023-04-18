@@ -75,10 +75,10 @@ if (isset($_SESSION['log_msg'])) {
         </div>
         <br>
 
-        <input placeholder="Username" type="text" id="uname" name="uname" title="Invalid username." required />
+        <input placeholder="Username" type="text" id="uname" name="uname" title="Invalid username." required size="30"/>
         <br>
 
-        <input placeholder="Password" type="password" name="password" pattern=".{8,100}" title="Passwords should be 8 - 100 characters." required />
+        <input placeholder="Password" type="password" name="password" pattern=".{8,100}" title="Passwords should be 8 - 100 characters." required size="30"/>
         <br>
 
         <!-- <label for="student">

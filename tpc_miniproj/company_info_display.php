@@ -85,6 +85,7 @@ $con = getDB();
 
 <body>
     <h1>Company Information</h1>
+    <br>
 
     <div class="center">
     <table class="content-table">
@@ -108,7 +109,35 @@ $con = getDB();
 
             // Retrieve data from the table
             $sql = "SELECT `com_name`, `email`, `cutoff`, `field`, `position`, `package` FROM `company` NATURAL JOIN `company_cutoff` NATURAL JOIN `company_job` WHERE `branch` = '{$_SESSION['branch']}'";
+
+            if (isset($_GET["filter"])) {
+            $field = $_GET["field"];
+            $position = $_GET["position"];
+            $min_package = $_GET["min_package"];
+            $max_package = $_GET["max_package"];
+
+            $conditions = array();
+
+            if (!empty($field)) {
+                $conditions[] = "`field` = '$field'";
+            }
+            if (!empty($position)) {
+                $conditions[] = "`position` = '$position'";
+            }
+            if (!empty($min_package)) {
+                $conditions[] = "`package` >= '$min_package'";
+            }
+            if (!empty($max_package)) {
+                $conditions[] = "`package` <= '$max_package'";
+            }
+
+            if (count($conditions) > 0) {
+                $sql .= " AND " . implode(" AND ", $conditions);
+            }
+            }
+
             $result = $conn->query($sql);
+
 
             // Display the data in the table
             if ($result->num_rows > 0) {
@@ -136,7 +165,28 @@ $con = getDB();
         ?>
     </table>
     </div>
-    <div class="center">
+    <br>
+    
+    <div class="form-center">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
+        <label for="field">Field:</label>
+        <input type="text" name="field" placeholder="Field">
+
+        <label for="position">Position:</label>
+        <input type="text" name="position" placeholder="Position">
+
+        <label for="package">Package:</label>
+        <input type="number" name="min_package" placeholder="Minimum" min="0">
+        <input type="number" name="max_package" placeholder="Maximum" min="0">
+
+        <div class="container">
+        <input type="submit" name="filter" value="Filter">
+        </div>
+    </form>
+    </div>
+    <br>
+
+    <div class="container">
     <a href="student/index.php"><button>Home</button></a>
     </div>
 

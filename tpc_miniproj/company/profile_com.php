@@ -93,44 +93,82 @@ if (isset($_SESSION['log_msg'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
 
+    <style>
+        h1 {text-align: center;}
+        h3 {text-align: center;}
+        .form-center {
+            display:flex;
+            justify-content:center;
+        }
+        .container{
+            width: 100%;
+            text-align: center;
+        }
+        .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        border: 3px solid #fff;;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="../mvp.css"/>
 </head>
 
 <body>
 
-    <h4>Profile</h4>
+    <h1>Profile</h1>
 
     <!-- Printing log message -->
-    <span style="color:red;"><?= $log ?></span><br>
-
-    username: <?= $_SESSION['username'] ?>
+    <div class="container">
+    <span style="color:red;"><?= $log ?></span>
+    </div>
     <br>
 
+    <div class="center">
+    <h3>
+    username: <?= $_SESSION['username'] ?>
+    </h3>
+    </div>
+    <br>
+
+    <div class="form-center">
     <form method="post" name="Edit Phone">
 
-        Company Name: <input placeholder="Company Name" type="text" name="com_name" pattern=".{0,256}" title="Username should be between 8 to 100 characters." value="<?= $_SESSION['com_name'] ?>" required />
+        Company Name: <input placeholder="Company Name" type="text" name="com_name" pattern=".{0,256}" title="Username should be between 8 to 100 characters." value="<?= $_SESSION['com_name'] ?>" required size="30"/>
         <br>
 
-        Email: <input placeholder="Email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Invalid email address." value="<?= $_SESSION['email'] ?>" required />
+        Email: <input placeholder="Email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Invalid email address." value="<?= $_SESSION['email'] ?>" required size="30"/>
         <br>
 
-        Representative Person: <input placeholder="Representative Name" type="text" name="rep_name" pattern="^[a-zA-Z][a-zA-Z\s]*$" value="<?= $_SESSION['rep_name'] ?>" title="Names cannot contain digits or special characters." required />
+        Representative Person: <input placeholder="Representative Name" type="text" name="rep_name" pattern="^[a-zA-Z][a-zA-Z\s]*$" value="<?= $_SESSION['rep_name'] ?>" title="Names cannot contain digits or special characters." required size="30"/>
         <br>
 
-        Recruiting Since: <input id="recruit_yr" name="recruit_yr" type="number" min="2008" max="2099" step="1" value="<?= $_SESSION['recruit_yr'] ?>" required />
+        Recruiting Since: <input id="recruit_yr" name="recruit_yr" type="number" min="2008" max="2099" step="1" value="<?= $_SESSION['recruit_yr'] ?>" required/>
         <br>
 
-        Phone No.: <input placeholder="Phone No." name="phone" type="text" title="10-digit Phone No." value="<?= $_SESSION['phone'] ?>" pattern="\d\d\d\d\d\d\d\d\d\d" required>
+        Phone No.: <input placeholder="Phone No." name="phone" type="text" title="10-digit Phone No." value="<?= $_SESSION['phone'] ?>" pattern="\d\d\d\d\d\d\d\d\d\d" required size="30">
+        <br>
+
+        <div class="center">
         <button type="submit">Save</button>
+        </div>
         <br>
     </form>
+    </div>
 
     <span id='message'></span>
     <br>
 
+    <div class="container">
     <a href='http://localhost/tpc_miniproj/change_password.php/'>Change Password</a>
+    </div>
     <br>
 
+    <div class="container">
     <a href='http://localhost/tpc_miniproj/company/index.php'>Back to Home</a>
+    </div>
 
 </body>
 

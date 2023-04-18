@@ -90,20 +90,44 @@ if (isset($_SESSION['log_msg'])) {
             window.history.replaceState(null, null, window.location.href);
         }
     </script>
+
+    <style>
+        h1 {text-align: center;}
+        .form-center {
+            display:flex;
+            justify-content:center;
+        }
+        .container{
+            width: 100%;
+            text-align: center;
+        }
+        .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        border: 3px solid #fff;;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="../mvp.css"/>
 </head>
 
 <body>
+    <br>
     <div class="session">
 
 
         <!-- Register form -->
-
+        <div class="form-center">
         <form method="post" action="" name="add_job">
 
-            <h4>Set Eligibility Criteria</h4>
+            <h1>Set Eligibility Criteria</h1>
 
             <!-- Printing log message -->
+            <div class="container">
             <span style="color:red;"><?= $log ?></span>
+            </div>
             <br>
 
             Round No.: <input placeholder="Round" name="round" type="number" min=1 step=1 value=1 required>
@@ -136,12 +160,16 @@ if (isset($_SESSION['log_msg'])) {
             </select>
             <br>
 
-
+            <div class="center">
             <button type="submit">Add / Update Round</button>
+            </div>
             <br>
 
+            <div class="container">
             <a href="index.php">Back to Home</a>
+            </div>
         </form>
+        </div>
     </div>
 </body>
 
