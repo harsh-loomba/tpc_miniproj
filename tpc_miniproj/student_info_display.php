@@ -44,6 +44,8 @@ $con = getDB();
         font-size: 0.9em;
         font-family: sans-serif;
         min-width: 900px;
+        max-height: 300px;
+        overflow: scroll;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     }
 
@@ -84,7 +86,7 @@ $con = getDB();
 
 <body>
     <h1>Student Information</h1>
-    <br>
+    <br><br><br><br>
 
     <div class="center">
     <table class="content-table">
@@ -137,7 +139,7 @@ $con = getDB();
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     $file_link1 = '<a href="/tpc_miniproj/resume/' . $row["rollno"] . '_resume.pdf"  target="_blank">View Resume</a>';
-                    $file_link2 = '<a href="/tpc_miniproj/resume/' . $row["rollno"] . '_transcript.pdf"  target="_blank">View Transcript</a>';
+                    $file_link2 = '<a href="/tpc_miniproj/transcript/' . $row["rollno"] . '_transcript.pdf"  target="_blank">View Transcript</a>';
                     echo "<tbody>";
                     echo "<tr>";
                     echo "<td>".$row["first_name"]." ".$row["middle_name"]." ".$row["last_name"]."</td>";
@@ -166,6 +168,7 @@ $con = getDB();
     </div>
     <br>
     
+    <br><br><br><br>
     <div class="form-center">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
         <label for="branch">branch:</label>

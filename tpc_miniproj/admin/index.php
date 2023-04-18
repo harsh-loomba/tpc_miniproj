@@ -24,18 +24,31 @@ if (isset($_SESSION['log_msg'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <style>
+        h1 {text-align: center;}
+        h3 {text-align: center;}
+        .container{
+        width: 100%;
+        text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../mvp.css" />
 </head>
 
 <body>
-    Admin Home
+    <div class="container">
+    <h1>Admin Home</h1>
     <br>
-    Welcome, <?= $_SESSION['username'] ?>
+    <h3>Welcome, <?= $_SESSION['username'] ?></h3>
+    </div>
     <br>
 
     <span style="color:red;"><?= $log ?></span><br>
 
+    <div class="container">
     <a href="http://localhost/tpc_miniproj/change_password.php">Change Password</a>
     <a href="http://localhost/tpc_miniproj/logout.php">Log Out</a>
+    </div>
 
 </body>
 

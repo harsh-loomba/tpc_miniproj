@@ -112,7 +112,8 @@ if (isset($_POST['submit'])) {
 
                 $_SESSION['log_msg'] = " Resume Upload Successful.";
 
-                $file_link = '<a href="/tpc_miniproj/resume/' . $finame . '">View Resume</a>';
+                //$file_link = '<a href="/tpc_miniproj/resume/' . $finame . '"  target="_blank">View Resume</a>';
+                
                 //$filesql =  "UPDATE `student` SET `resume` = '$filename' WHERE `rollno` = '$rollno'";
                 //$fileresult = mysqli_query($con, $filesql);
             } else {
@@ -167,7 +168,7 @@ if (isset($_POST['tsubmit'])) {
             if (move_uploaded_file($_FILES['transcript']['tmp_name'], $newname)) {
 
                 $_SESSION['log_msg'] = " Transcript Upload Successful.";
-                $file_link = '<a href="/tpc_miniproj/transcript/' . $finame . '">View Transcript</a>';
+                //$file_link = '<a href="/tpc_miniproj/transcript/' . $finame . '"  target="_blank">View Transcript</a>';
 
                 //$filesql =  "UPDATE `student` SET `resume` = '$filename' WHERE `rollno` = '$rollno'";
                 //$fileresult = mysqli_query($con, $filesql);
@@ -244,40 +245,48 @@ if (isset($_SESSION['log_msg'])) {
     </script>
 
     <style>
-        h1 {text-align: center;}
-        h2 {text-align: center;}
-        .form-center {
-            display:flex;
-            justify-content:center;
+        h1 {
+            text-align: center;
         }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-center {
+            display: flex;
+            justify-content: center;
+        }
+
         .center {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100px;
-            border: 3px solid #fff;;
+            border: 3px solid #fff;
+            ;
         }
-        .container{
+
+        .container {
             width: 100%;
             text-align: center;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="mvp.css"/>    
+    <link rel="stylesheet" type="text/css" href="mvp.css" />
 </head>
 
 <body>
-    <br>
+
     <h1>Update Marks</h1>
 
     <!-- Printing log message -->
     <div class="container">
     <span style="color:red;"><?= $log ?></span><br>
     </div>
-    <br>
 
     <div class="form-center">
     <form method="post" name="Update Marks">
-        
+
         Grade 10: <input placeholder="Grade 10" name="grade10" type="number" min=0 max=100 step=0.01 required value="<?= $_SESSION['grade10'] ?>"><br>
         Grade 12: <input placeholder="Grade 12" name="grade12" type="number" min=0 max=100 step=0.01 required value="<?= $_SESSION['grade12'] ?>"><br>
         CPI: <input placeholder="CPI" name="CPI" type="number" min=0 max=10 step=0.01 required value="<?= $_SESSION['CPI'] ?>"><br>
@@ -295,7 +304,6 @@ if (isset($_SESSION['log_msg'])) {
     <h2>Upload Files</h2>
 
     <br>
-
     <div class="form-center">
     <form action="" method="post" enctype="multipart/form-data">
 
@@ -304,12 +312,17 @@ if (isset($_SESSION['log_msg'])) {
             <input name="resume" type="file">
         </span>
         <br />
-        <div class="center">
+        <div class="container">
         <input type="submit" name="submit" class="btn-success" value="submit">
         </div>
     </form>
     </div>
+    <br>
 
+    <div class="container">
+    <a href="http://localhost/tpc_miniproj/resume/<?= $_SESSION['rollno'] ?>_resume.pdf" target="_blank" >View Resume</a>
+    </div>
+    <br>
     <br>
 
     <div class="form-center">
@@ -320,13 +333,21 @@ if (isset($_SESSION['log_msg'])) {
             <input name="transcript" type="file">
         </span>
         <br />
-        <div class="center">
+        <div class="container">
         <input type="submit" name="tsubmit" class="btn-success" value="submit">
         </div>
     </form>
     </div>
+    <br>
 
+    <div class="container">
+    <a href="http://localhost/tpc_miniproj/transcript/<?= $_SESSION['rollno'] ?>_transcript.pdf" target="_blank" >View Transcript</a>
+    </div>
+    <br>
+    
+    <div class="container">
     <span id='message'></span>
+    </div>
     <br>
 
     <div class="container">
@@ -344,7 +365,6 @@ if (isset($_SESSION['log_msg'])) {
     ?>
     </div>
     <br>
-
 
 </body>
 
