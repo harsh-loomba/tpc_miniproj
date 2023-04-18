@@ -111,9 +111,12 @@ if (isset($_SESSION['log_msg'])) {
                 <h1>Register</h1>
 
                 <!-- Printing log message -->
+                <div class="container">
                 <span style="color:red;"><?= $log ?></span><br>
+                </div>
+                <br>
 
-                <input placeholder="IITP Roll No." type="text" id="rollno" name="rollno" pattern="\d\d\d\d[A-Za-z][A-Za-z][0-9]+" title="Invalid roll number." onkeyup="get_branch()" required />
+                <input placeholder="IITP Roll No." type="text" id="rollno" name="rollno" pattern="\d\d\d\d[A-Za-z][A-Za-z][0-9]+" title="Invalid roll number." onkeyup="get_branch()" required size="30"/>
 
                 <select id="course" name="course" required>
                     <label for="course">
@@ -135,19 +138,19 @@ if (isset($_SESSION['log_msg'])) {
                 Alumni: <input type="checkbox" id="alumni" name="alumni" value="true">
                 <br>
 
-                <input placeholder="IITP Webmail" type="email" name="email" pattern="[A-Za-z]+_\d\d\d\d[A-Za-z][A-Za-z][0-9]+@iitp\.ac\.in" title="Invalid IITP webmail address." required />
+                <input placeholder="IITP Webmail" type="email" name="email" pattern="[A-Za-z]+_\d\d\d\d[A-Za-z][A-Za-z][0-9]+@iitp\.ac\.in" title="Invalid IITP webmail address." required size="30"/>
 
-                <input placeholder="First Name" type="text" name="first_name" pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Names cannot contain digits or special characters." required />
+                <input placeholder="First Name" type="text" name="first_name" pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Names cannot contain digits or special characters." required size="30"/>
 
-                <input placeholder="Middle Name" type="text" name="mid_name" pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Names cannot contain digits or special characters." />
+                <input placeholder="Middle Name" type="text" name="mid_name" pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Names cannot contain digits or special characters." size="30"/>
 
-                <input placeholder="Last Name" type="text" name="last_name" pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Names cannot contain digits or special characters." />
+                <input placeholder="Last Name" type="text" name="last_name" pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Names cannot contain digits or special characters." size="30"/>
 
-                <input placeholder="Phone No." name="phone" type="text" title="10-digit Phone No." pattern="\d\d\d\d\d\d\d\d\d\d" required>
+                <input placeholder="Phone No." name="phone" type="text" title="10-digit Phone No." pattern="\d\d\d\d\d\d\d\d\d\d" required size="30">
 
-                <input placeholder="Password" type="password" id="password" name="password" pattern=".{8,100}" title="Passwords should be 8 - 100 characters." onkeyup='check();' required />
+                <input placeholder="Password" type="password" id="password" name="password" pattern=".{8,100}" title="Passwords should be 8 - 100 characters." onkeyup='check();' required size="30"/>
 
-                <input placeholder="Confirm Password" type="password" id="confirm_pass" name="confirm_pass" onkeyup='check();' required />
+                <input placeholder="Confirm Password" type="password" id="confirm_pass" name="confirm_pass" onkeyup='check();' required size="30"/>
 
                 <span id='message'></span>
 

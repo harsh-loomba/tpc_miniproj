@@ -112,7 +112,8 @@ if (isset($_POST['submit'])) {
 
                 $_SESSION['log_msg'] = " Resume Upload Successful.";
 
-                $file_link = '<a href="/tpc_miniproj/resume/' . $finame . '">View Resume</a>';
+                //$file_link = '<a href="/tpc_miniproj/resume/' . $finame . '"  target="_blank">View Resume</a>';
+                
                 //$filesql =  "UPDATE `student` SET `resume` = '$filename' WHERE `rollno` = '$rollno'";
                 //$fileresult = mysqli_query($con, $filesql);
             } else {
@@ -167,7 +168,7 @@ if (isset($_POST['tsubmit'])) {
             if (move_uploaded_file($_FILES['transcript']['tmp_name'], $newname)) {
 
                 $_SESSION['log_msg'] = " Transcript Upload Successful.";
-                $file_link = '<a href="/tpc_miniproj/transcript/' . $finame . '">View Transcript</a>';
+                //$file_link = '<a href="/tpc_miniproj/transcript/' . $finame . '"  target="_blank">View Transcript</a>';
 
                 //$filesql =  "UPDATE `student` SET `resume` = '$filename' WHERE `rollno` = '$rollno'";
                 //$fileresult = mysqli_query($con, $filesql);
@@ -243,98 +244,69 @@ if (isset($_SESSION['log_msg'])) {
         }
     </script>
 
-    <style>
-        h1 {text-align: center;}
-        h2 {text-align: center;}
-        .form-center {
-            display:flex;
-            justify-content:center;
-        }
-        .center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100px;
-            border: 3px solid #fff;;
-        }
-        .container{
-            width: 100%;
-            text-align: center;
-        }
-    </style>
-    <link rel="stylesheet" type="text/css" href="mvp.css"/>    
 </head>
 
 <body>
-    <br>
-    <h1>Update Marks</h1>
+
+    <h4>Update Marks</h4>
 
     <!-- Printing log message -->
-    <div class="container">
     <span style="color:red;"><?= $log ?></span><br>
-    </div>
-    <br>
 
-    <div class="form-center">
     <form method="post" name="Update Marks">
-        
+
         Grade 10: <input placeholder="Grade 10" name="grade10" type="number" min=0 max=100 step=0.01 required value="<?= $_SESSION['grade10'] ?>"><br>
         Grade 12: <input placeholder="Grade 12" name="grade12" type="number" min=0 max=100 step=0.01 required value="<?= $_SESSION['grade12'] ?>"><br>
         CPI: <input placeholder="CPI" name="CPI" type="number" min=0 max=10 step=0.01 required value="<?= $_SESSION['CPI'] ?>"><br>
 
-        <div class="center">
         <button type="submit">Save</button>
-        </div>
         <br>
     </form>
-    </div>
 
     <br>
     <br>
 
-    <h2>Upload Files</h2>
+    <h4>Upload Files</h4>
 
     <br>
-
-    <div class="form-center">
     <form action="" method="post" enctype="multipart/form-data">
 
         <label>Upload Resume</label>
         <span class="btn btn-default btn-file">
             <input name="resume" type="file">
         </span>
-        <br />
-        <div class="center">
+        <br /><br />
         <input type="submit" name="submit" class="btn-success" value="submit">
-        </div>
     </form>
-    </div>
-
+    </form>
     <br>
 
-    <div class="form-center">
+    <a href="http://localhost/tpc_miniproj/resume/<?= $_SESSION['rollno'] ?>_resume.pdf" target="_blank" >View Resume</a>
+    <br>
+
     <form action="" method="post" enctype="multipart/form-data">
 
         <label>Upload Transcript</label>
         <span class="btn btn-default btn-file">
             <input name="transcript" type="file">
         </span>
-        <br />
-        <div class="center">
+        <br /><br />
         <input type="submit" name="tsubmit" class="btn-success" value="submit">
-        </div>
     </form>
-    </div>
+    </form>
+    <br>
+
+    <a href="http://localhost/tpc_miniproj/transcript/<?= $_SESSION['rollno'] ?>_transcript.pdf" target="_blank" >View Transcript</a>
+    <br>
 
     <span id='message'></span>
     <br>
 
-    <div class="container">
     <a href='http://localhost/tpc_miniproj/change_password.php/'>Change Password</a>
-    </div>
     <br>
 
-    <div class="container">
+
+
     <?php
     if ($_SESSION['alumnus']) {
         echo "<a href='http://localhost/tpc_miniproj/alumni/index.php'>Back to Home</a>";
@@ -342,8 +314,6 @@ if (isset($_SESSION['log_msg'])) {
         echo "<a href='http://localhost/tpc_miniproj/student/index.php'>Back to Home</a>";
     }
     ?>
-    </div>
-    <br>
 
 
 </body>
