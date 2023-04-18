@@ -34,6 +34,9 @@ if (isset($_SESSION['log_msg'])) {
 
     <span style="color:red;"><?= $log ?></span><br>
 
+    <a href="../update_marks.php">Update Marks</a>
+    <br>
+
     <a href="../profile_stud.php">Profile</a>
     <br>
 
