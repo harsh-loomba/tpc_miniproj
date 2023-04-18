@@ -6,13 +6,6 @@ session_start();
 //display any error / log messages
 $log = '';
 
-if (isset($_SESSION['log_msg'])) {
-    $log = $_SESSION['log_msg'];
-
-    //Unsetting log_msg so that it does not repeat on a reload
-    unset($_SESSION['log_msg']);
-}
-
 //include connection.php
 include_once('../connection.php');
 
@@ -49,6 +42,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['log_msg'] = "Server Error : Job not added.";
         }
     }
+
+    $_POST = array();
+}
+
+if (isset($_SESSION['log_msg'])) {
+    $log = $_SESSION['log_msg'];
+
+    //Unsetting log_msg so that it does not repeat on a reload
+    unset($_SESSION['log_msg']);
 }
 
 ?>
@@ -61,6 +63,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Jobs</title>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 </head>
 
 <body>
