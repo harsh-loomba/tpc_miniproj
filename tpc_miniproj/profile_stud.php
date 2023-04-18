@@ -82,6 +82,25 @@ if (isset($_SESSION['log_msg'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
 
+    <style>
+        h1 {text-align: center;}
+        .form-center {
+            display:flex;
+            justify-content:center;
+        }
+        .container{
+            width: 100%;
+            text-align: center;
+        }
+        .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        border: 3px solid #fff;;
+        }
+    </style>
+
     <script>
         var get_branch = function() {
             var data = {
@@ -102,17 +121,20 @@ if (isset($_SESSION['log_msg'])) {
             document.getElementById('branch').innerHTML = text;
         }
     </script>
-
+    <link rel="stylesheet" type="text/css" href="mvp.css"/>
 </head>
 
 <body>
 
-    <h4>Profile</h4>
+    <h1>Profile</h1>
 
     <!-- Printing log message -->
     <span style="color:red;"><?= $log ?></span><br>
 
+    <div class="container">
+
     Roll No: <?= $_SESSION['rollno'] ?>
+    <br>
     <br>
 
     Course: <?= $_SESSION['course'] ?> <span id="branch"></span>
@@ -120,8 +142,10 @@ if (isset($_SESSION['log_msg'])) {
         get_branch();
     </script>
     <br>
+    <br>
 
     Graduation Year: <?= $_SESSION['grad_yr'] ?>
+    <br>
     <br>
 
     Status:
@@ -134,25 +158,36 @@ if (isset($_SESSION['log_msg'])) {
     }
     ?>
     <br>
+    <br>
 
     Webmail: <?= $_SESSION['email'] ?>
+    <br>
     <br>
 
     Name: <?= $_SESSION['first_name'] ?> <?= $_SESSION['middle_name'] ?> <?= $_SESSION['last_name'] ?>
     <br>
+    <br>
 
+    </div>
+
+    <div class="form-center">
     <form method="post" name="Edit Phone">
         Phone No.: <input placeholder="Phone No." name="phone" type="text" title="10-digit Phone No." value="<?= $_SESSION['phone'] ?>" pattern="\d\d\d\d\d\d\d\d\d\d" required>
+        <div class="center">
         <button type="submit">Save</button>
-        <br>
+        </div>
     </form>
+    </div>
 
     <span id='message'></span>
     <br>
 
+    <div class="container">
     <a href='http://localhost/tpc_miniproj/change_password.php/'>Change Password</a>
+    </div>
     <br>
 
+    <div class="container">
     <?php
     if ($_SESSION['alumnus']) {
         echo "<a href='http://localhost/tpc_miniproj/alumni/index.php'>Back to Home</a>";
@@ -160,7 +195,7 @@ if (isset($_SESSION['log_msg'])) {
         echo "<a href='http://localhost/tpc_miniproj/student/index.php'>Back to Home</a>";
     }
     ?>
-
+    </div>
 
 </body>
 

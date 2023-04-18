@@ -26,21 +26,38 @@ if (isset($_SESSION['log_msg'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <style>
+        h1 {text-align: center;}
+        .container{
+        width: 100%;
+        text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../mvp.css" />
 </head>
 
 <body>
-    Student Home
+    <h1>Student Home</h1>
+    <br>
+    
+    <div class="container">
+    <span style="color:red;"><?= $log ?></span>
+    </div>
     <br>
 
-    <span style="color:red;"><?= $log ?></span><br>
-
-    <a href="../update_marks.php">Update Marks</a>
-    <br>
-
+    <div class="container">
     <a href="../profile_stud.php">Profile</a>
+    </div>
     <br>
 
+    <div class="container">
+    <a href="../company_info_display.php">Company Information</a>
+    </div>
+    <br>
+    
+    <div class="container">
     <a href="../logout.php">Log Out</a>
+    </div>
 </body>
 
 </html>

@@ -31,6 +31,25 @@ if (isset($_SESSION['log_msg'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 
+    <style>
+        h1 {text-align: center;}
+        .form-center {
+            display:flex;
+            justify-content:center;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            border: 3px solid #fff;;
+        }
+        .container{
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+
     <script>
         // Javascript function to check frontend password matching
         var check = function() {
@@ -44,22 +63,24 @@ if (isset($_SESSION['log_msg'])) {
             }
         }
     </script>
-
+    <link rel="stylesheet" type="text/css" href="mvp.css"/>
 </head>
 
 <body>
+    <br>
     <div class="session">
 
-
         <!-- Register form -->
-
+        <div class="form-center">
         <form method="post" action="validate_reg_com.php" name="Register" class="log-in">
 
-            <h4>Register</h4>
+            <h1>Register</h1>
+            <br>
 
             <!-- Printing log message -->
+            <div class="container">
             <span style="color:red;"><?= $log ?></span>
-
+            </div>
 
             <input placeholder="Company Name" type="text" pattern=".{0,256}" name="com_name" required />
             <br>
@@ -79,10 +100,16 @@ if (isset($_SESSION['log_msg'])) {
             <span id='message'></span>
             <br>
 
+            <div class="center">
             <button type="submit">Register</button>
+            </div>
             <br>
 
+            <div class="container">
             <a href="index.php">Back to login</a>
+            </div>
+        </form>
+        </div>
     </div>
 </body>
 
