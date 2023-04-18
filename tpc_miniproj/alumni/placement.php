@@ -76,9 +76,37 @@ if (isset($_SESSION['log_msg'])) {
             window.history.replaceState(null, null, window.location.href);
         }
     </script>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .form-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            border: 3px solid #fff;
+            ;
+        }
+
+        .container {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../mvp.css" />
 </head>
 
 <body>
+    <h1>Placement Info</h1>
+    <br>
+    <div class="form-center">
     <form method="post" action="" name="placement">
 
         <span style="color:red;"><?= $log ?></span>
@@ -105,12 +133,18 @@ if (isset($_SESSION['log_msg'])) {
         To Year: (leave empty if currently working) <input id="to_year" name="to_year" type="number" min="2008" max="2099" step="1" required />
         <br>
 
+        <div class="center">
         <button type="submit">Add Placement Info</button>
+        </div>
         <br>
 
     </form>
+    </div>
 
+    <br>
+    <div class="container">
     <a href="index.php">Back to Home</a>
+    </div>
 
 </body>
 

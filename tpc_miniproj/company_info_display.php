@@ -45,6 +45,8 @@ $con = getDB();
         font-size: 0.9em;
         font-family: sans-serif;
         min-width: 400px;
+        max-height: 300px;
+        overflow: scroll;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     }
 
@@ -85,7 +87,7 @@ $con = getDB();
 
 <body>
     <h1>Company Information</h1>
-    <br>
+    <br><br>
 
     <div class="center">
     <table class="content-table">
@@ -167,6 +169,7 @@ $con = getDB();
     </div>
     <br>
     
+    <br><br><br><br>
     <div class="form-center">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
         <label for="field">Field:</label>

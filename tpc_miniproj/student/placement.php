@@ -84,12 +84,42 @@ if (isset($_SESSION['log_msg'])) {
             window.history.replaceState(null, null, window.location.href);
         }
     </script>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .form-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            border: 3px solid #fff;
+            ;
+        }
+
+        .container {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../mvp.css" />
 </head>
 
 <body>
+    <h1>Placement Info</h1>
+    <br>
+    <div class="form-center">
     <form method="post" action="" name="placement">
 
+        <div class="container">
         <span style="color:red;"><?= $log ?></span>
+        </div>
         <br>
 
         <input placeholder="Company Name" type="text" pattern=".{0,256}" name="com_name" required />
@@ -116,12 +146,18 @@ if (isset($_SESSION['log_msg'])) {
         Internship: <input type="checkbox" id="is_intern" name="is_intern" value="true">
         <br>
 
+        <div class="center">
         <button type="submit">Add Placement Info</button>
+        </div>
         <br>
 
     </form>
+    </div>
 
+    <br>
+    <div class="container">
     <a href="index.php">Back to Home</a>
+    </div>
 
 </body>
 

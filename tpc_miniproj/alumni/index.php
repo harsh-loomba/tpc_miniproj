@@ -27,23 +27,39 @@ if (isset($_SESSION['log_msg'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <style>
+        h1 {text-align: center;}
+        h3 {text-align: center;}
+        .container{
+        width: 100%;
+        text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../mvp.css" />
 </head>
 
 <body>
-    Alumni Home
+    <div class="container">
+    <h1>Alumni Home</h1>
+    </div>
     <br>
+    <div class="container">
     <span style="color:red;"><?= $log ?></span><br>
+    </div>
 
-
+    <div class="container">
     <a href="../profile_stud.php">Profile</a>
+    </div>
     <br>
     
-     <div class="container">
-        <a href="placement.php">Add Placement Information</a>
+    <div class="container">
+    <a href="placement.php">Add Placement Information</a>
     </div>
     <br>
 
+    <div class="container">
     <a href="http://localhost/tpc_miniproj/logout.php">Log Out</a>
+    </div>
 
 </body>
 
