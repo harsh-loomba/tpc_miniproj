@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2023 at 03:51 PM
+-- Generation Time: Apr 18, 2023 at 06:53 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -55,6 +55,13 @@ CREATE TABLE `alumni_placement` (
   `from_yr` year(4) NOT NULL,
   `to_yr` year(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `alumni_placement`
+--
+
+INSERT INTO `alumni_placement` (`rollno`, `com_name`, `CTC`, `field_of_work`, `position`, `location`, `from_yr`, `to_yr`) VALUES
+('1701CS32', 'Google', 1230000, 'SWE', 'SWE', 'maah', 2020, 2023);
 
 -- --------------------------------------------------------
 
@@ -206,6 +213,13 @@ CREATE TABLE `student_placement` (
   `year` year(4) NOT NULL,
   `offcampus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student_placement`
+--
+
+INSERT INTO `student_placement` (`rollno`, `is_intern`, `com_name`, `CTC`, `field_of_work`, `position`, `location`, `year`, `offcampus`) VALUES
+('2101CS32', 1, 'Google', 120000, 'SWE', 'Database Engineer', 'maah', 2023, 0);
 
 --
 -- Indexes for dumped tables
