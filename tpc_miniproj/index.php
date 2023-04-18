@@ -42,17 +42,37 @@ if (isset($_SESSION['log_msg'])) {
         //     input.placeholder = data[element.id];
         // }
     </script>
+    <style>
+        .form-center {
+            display:flex;
+            justify-content:center;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            border: 3px solid #fff;;
+        }
+        .container{
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="mvp.css"/>
 </head>
 
 <body>
 
     <!-- Login form -->
-
+    <br>
+    <div class="form-center">
     <form method="post" action="validate.php" name="Login">
 
         <!-- Printing log message -->
-
+        <div class="container">
         <span style="color:red;"><?= $log ?></span>
+        </div>
         <br>
 
         <input placeholder="Username" type="text" id="uname" name="uname" title="Invalid username." required />
@@ -82,16 +102,23 @@ if (isset($_SESSION['log_msg'])) {
         </label>
         <br> -->
 
+        <div class="center">
         <button type="submit" value="Login">Login</button>
+        </div>
         <br>
 
+        <div class="container">
         <a href="register_stud.php">Register as Student / Alumni</a>
+        </div>
         <br>
 
+        <div class="container">
         <a href="register_com.php">Register as Company</a>
+        </div>
         <br>
 
     </form>
+    </div>
 
 </body>
 
