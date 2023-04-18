@@ -112,7 +112,8 @@ if (isset($_POST['submit'])) {
 
                 $_SESSION['log_msg'] = " Resume Upload Successful.";
 
-                $file_link = '<a href="/tpc_miniproj/resume/' . $finame . '">View Resume</a>';
+                //$file_link = '<a href="/tpc_miniproj/resume/' . $finame . '"  target="_blank">View Resume</a>';
+                
                 //$filesql =  "UPDATE `student` SET `resume` = '$filename' WHERE `rollno` = '$rollno'";
                 //$fileresult = mysqli_query($con, $filesql);
             } else {
@@ -167,7 +168,7 @@ if (isset($_POST['tsubmit'])) {
             if (move_uploaded_file($_FILES['transcript']['tmp_name'], $newname)) {
 
                 $_SESSION['log_msg'] = " Transcript Upload Successful.";
-                $file_link = '<a href="/tpc_miniproj/transcript/' . $finame . '">View Transcript</a>';
+                //$file_link = '<a href="/tpc_miniproj/transcript/' . $finame . '"  target="_blank">View Transcript</a>';
 
                 //$filesql =  "UPDATE `student` SET `resume` = '$filename' WHERE `rollno` = '$rollno'";
                 //$fileresult = mysqli_query($con, $filesql);
@@ -278,6 +279,10 @@ if (isset($_SESSION['log_msg'])) {
         <input type="submit" name="submit" class="btn-success" value="submit">
     </form>
     </form>
+    <br>
+
+    <a href="http://localhost/tpc_miniproj/resume/<?= $_SESSION['rollno'] ?>_resume.pdf" target="_blank" >View Resume</a>
+    <br>
 
     <form action="" method="post" enctype="multipart/form-data">
 
@@ -289,12 +294,18 @@ if (isset($_SESSION['log_msg'])) {
         <input type="submit" name="tsubmit" class="btn-success" value="submit">
     </form>
     </form>
+    <br>
+
+    <a href="http://localhost/tpc_miniproj/transcript/<?= $_SESSION['rollno'] ?>_transcript.pdf" target="_blank" >View Transcript</a>
+    <br>
 
     <span id='message'></span>
     <br>
 
     <a href='http://localhost/tpc_miniproj/change_password.php/'>Change Password</a>
     <br>
+
+
 
     <?php
     if ($_SESSION['alumnus']) {

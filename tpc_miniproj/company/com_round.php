@@ -141,6 +141,7 @@ if (isset($_SESSION['log_msg'])) {
             <br>
 
             <a href="index.php">Back to Home</a>
+        </form>
     </div>
 </body>
 
