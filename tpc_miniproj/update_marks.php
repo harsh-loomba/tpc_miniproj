@@ -237,6 +237,10 @@ if (isset($_SESSION['log_msg'])) {
             }
             document.getElementById('branch').innerHTML = text;
         }
+
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
     </script>
 
 </head>

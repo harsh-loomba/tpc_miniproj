@@ -23,31 +23,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //If all parameters present in post
     if (!isset(
-        $_POST["field"],
-        $_POST["position"],
-        $_POST["package"]
+        $_POST["course"],
+        $_POST["branch"],
+        $_POST["cutoff"]
     )) {
         $_SESSION['log_msg'] = "Please fill all the required fields.";
     } else {
-        $field = convert_input($_POST["field"]);
-        $position = convert_input($_POST["position"]);
-        $package = (int)filter_var($_POST["package"], FILTER_SANITIZE_NUMBER_INT);
+        $course = convert_input($_POST["course"]);
+        $branch = convert_input($_POST["branch"]);
+        $cutoff = $_POST['cutoff'];
         $username = $_SESSION['username'];
 
-        //Registering
+        $dupli_query =
+            "SELECT `username`,`course`, `branch`, `cutoff`
+            FROM `company_cutoff`
+            WHERE `username` = ?
+            AND `course` = '$course'
+            AND `branch` = '$branch';";
+
+        $stmt = $con->prepare($dupli_query);
+        $stmt->bind_param('s', $_SESSION['username']);
+        $stmt->execute();
+        $stmt->store_result();
 
         $query =
-            "INSERT INTO `company_job`
-            (`username`,`field`, `position`, `package`)
-            VALUES ('$username', '$field', '$position', '$package');";
+            "INSERT INTO `company_cutoff`
+            (`username`,`course`, `branch`, `cutoff`)
+            VALUES ('$username', '$course', '$branch', '$cutoff');";
+
+        if ($stmt->num_rows() > 0) {
+            $query =
+                "UPDATE `company_cutoff`
+                SET `cutoff` = '$cutoff'
+                WHERE `username` = '$username'
+                AND `course` = '$course'
+                AND `branch` = '$branch';";
+        }
 
         $result = mysqli_query($con, $query);
 
         if ($result) {
-            $_SESSION['log_msg'] = "Job Added!";
+            if ($stmt->num_rows() == 0) {
+                $_SESSION['log_msg'] = "Eligibility Criteria Added!";
+            } else {
+                $_SESSION['log_msg'] = "Eligibility Criteria Updated!";
+            }
         } else {
-            $_SESSION['log_msg'] = "Server Error : Job not added.";
+            $_SESSION['log_msg'] = "Server Error : Criteria not added / updated.";
         }
+
+        $stmt->close();
     }
 }
 
@@ -60,7 +85,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Jobs</title>
+    <title>Set Cutoff</title>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 </head>
 
 <body>
@@ -71,22 +101,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form method="post" action="" name="add_job">
 
-            <h4>Add Jobs</h4>
+            <h4>Set Eligibility Criteria</h4>
 
             <!-- Printing log message -->
             <span style="color:red;"><?= $log ?></span>
             <br>
 
-            <input placeholder="Course" type="text" name="field" required />
+            Course:
+            <select id="course" name="course" required>
+                <label for="course">
+                    Course
+                </label>
+
+                <option value="B.Tech. / B.S.">B.Tech. / B.S.</option>
+                <option value="M.Tech.">M.Tech.</option>
+                <option value="Ph.D.">Ph.D.</option>
+            </select>
+            <br>
+            Branch:
+            <select id="branch" name="branch" required>
+                <label for="branch">
+                    Branch
+                </label>
+                <option selected=true disabled=true>Select Branch</option>
+                <option value="AI">Artificial Intelligence and Data Science</option>
+                <option value="CB">Chemical Engineering</option>
+                <option value="CE">Civil and Environmental Engineering</option>
+                <option value="CS">Computer Science and Engineering</option>
+                <option value="EE">Electrical and Electronics Engineering</option>
+                <option value="MC">Mathematics and Computing</option>
+                <option value="ME">Mechanical Engineering</option>
+                <option value="MM">Materials and Metallurgical Engineering</option>
+                <option value="PH">Engineering Physics</option>
+
+            </select>
             <br>
 
-            <input placeholder="Position" type="text" name="position" required />
+            Cutoff CPI: <input placeholder="cutoff" name="cutoff" type="number" min=0 max=10 step=0.01 required>
             <br>
 
-            <input placeholder="Package" type="number" name="package" required />
-            <br>
 
-            <button type="submit">Add Job</button>
+            <button type="submit">Add / Update Criteria</button>
             <br>
 
             <a href="index.php">Back to Home</a>

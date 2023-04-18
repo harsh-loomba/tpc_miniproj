@@ -35,6 +35,15 @@ if (isset($_SESSION['log_msg'])) {
     <a href="profile_com.php">Profile</a>
     <br>
 
+    <a href="com_job.php">Add Job</a>
+    <br>
+
+    <a href="com_round.php">Add Placement Round Information</a>
+    <br>
+
+    <a href="com_cutoff.php">Set Eligibility Criteria</a>
+    <br>
+
     <a href="http://localhost/tpc_miniproj/logout.php">Log Out</a>
 
 </body>
