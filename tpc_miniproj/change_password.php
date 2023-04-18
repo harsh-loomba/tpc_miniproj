@@ -3,7 +3,6 @@ session_start();
 
 //User not logged in : Redirect to index.php
 if (!isset($_SESSION['loggedin'])) {
-    session_destroy();
     header('Location: http://localhost/tpc_miniproj/index.html');
     exit;
 }
@@ -30,108 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // If user exists
         if ($stmt->num_rows() == 0) {
-
-            $stmt->close();
-
-            $query = "SELECT `username`, `password` FROM `company` WHERE `username` = ?";
-
-            $stmt = $con->prepare($query);
-            $stmt->bind_param('s', $_SESSION['username']);
-            $stmt->execute();
-            $stmt->store_result();
-
-            if ($stmt->num_rows() == 0) {
-
-                $stmt->close();
-
-                $query = "SELECT `username`, `password` FROM `admin` WHERE `username` = ?";
-
-                $stmt = $con->prepare($query);
-                $stmt->bind_param('s', $_SESSION['username']);
-                $stmt->execute();
-                $stmt->store_result();
-
-                if ($stmt->num_rows() == 0) {
-                    $_SESSION['log_msg'] =  "ERROR: User does not exist.";
-                    exit;
-                } else {
-                    $stmt->bind_result($username, $password);
-                    $stmt->fetch();
-
-                    if (md5($_POST["password"]) === $password) {
-
-
-                        $updated_pass = $password;
-
-                        if ($_POST['new_pass'] != "") {
-                            if ($_POST['new_pass'] === $_POST['confirm_pass']) {
-                                $updated_pass = md5($_POST['new_pass']);
-                            } else {
-                                $_SESSION['log_msg'] = "Password and Confirm Password fields are not matching!!!";
-                                exit;
-                            }
-                        }
-
-                        // Update user in database
-
-                        $update_query = "UPDATE `admin`
-                        SET `password` = '$updated_pass'
-                        WHERE `username` = '$username'";
-
-                        $result = mysqli_query($con, $update_query);
-
-                        if ($result) {
-                            // If update successful, also update session variables
-                            $_SESSION['log_msg'] = "Password Changed Successfully";
-                            header('Location: http://localhost/tpc_miniproj/admin');
-                            exit;
-                        } else {
-                            $_SESSION['log_msg'] = "Unexpected error: Details not changed.";
-                        }
-                    } else {
-                        // Incorrect password
-                        $_SESSION['log_msg'] =  'Incorrect password!';
-                    }
-                }
-            } else {
-                $stmt->bind_result($username, $password);
-                $stmt->fetch();
-
-                if (md5($_POST["password"]) === $password) {
-
-
-                    $updated_pass = $password;
-
-                    if ($_POST['new_pass'] != "") {
-                        if ($_POST['new_pass'] === $_POST['confirm_pass']) {
-                            $updated_pass = md5($_POST['new_pass']);
-                        } else {
-                            $_SESSION['log_msg'] = "Password and Confirm Password fields are not matching!!!";
-                            exit;
-                        }
-                    }
-
-                    // Update user in database
-
-                    $update_query = "UPDATE `company`
-                    SET `password` = '$updated_pass'
-                    WHERE `username` = '$username'";
-
-                    $result = mysqli_query($con, $update_query);
-
-                    if ($result) {
-                        // If update successful, also update session variables
-                        $_SESSION['log_msg'] = "Password Changed Successfully";
-                        header('Location: http://localhost/tpc_miniproj/company/profile_com.php');
-                        exit;
-                    } else {
-                        $_SESSION['log_msg'] = "Unexpected error: Details not changed.";
-                    }
-                } else {
-                    // Incorrect password
-                    $_SESSION['log_msg'] =  'Incorrect password!';
-                }
-            }
+            $_SESSION['log_msg'] =  "ERROR: User does not exist.";
         } else {
 
             $stmt->bind_result($rollno, $password);
@@ -147,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $updated_pass = md5($_POST['new_pass']);
                     } else {
                         $_SESSION['log_msg'] = "Password and Confirm Password fields are not matching!!!";
+                        header('Location: http://localhost/tpc_miniproj/change_password.php');
                         exit;
                     }
                 }
@@ -161,17 +60,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if ($result) {
                     // If update successful, also update session variables
-                    $_SESSION['log_msg'] = "Password Changed Successfully";
+                    $_SESSION['log_msg'] = "Details Updated Successfully";
                     header('Location: http://localhost/tpc_miniproj/profile_stud.php');
-                    // exit;
+                    exit;
                 } else {
                     $_SESSION['log_msg'] = "Unexpected error: Details not changed.";
-                    exit;
                 }
             } else {
                 // Incorrect password
                 $_SESSION['log_msg'] =  'Incorrect password!';
-                exit;
             }
         }
 

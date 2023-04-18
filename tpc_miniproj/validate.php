@@ -48,49 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->store_result();
 
             if ($stmt->num_rows() == 0) {
-
-                $stmt->close();
-
-                $query = "SELECT
-                `username`, `password`
-                FROM `admin` WHERE `username` = ?";
-
-                $stmt = $con->prepare($query);
-                $stmt->bind_param('s', $_POST['uname']);
-                $stmt->execute();
-                $stmt->store_result();
-
-                if ($stmt->num_rows() == 0) {
-                    $_SESSION['log_msg'] = "User does not exist!";
-                    header('Location: http://localhost/tpc_miniproj/index.php');
-                } else {
-                    $stmt->bind_result(
-                        $username,
-                        $password
-                    );
-
-                    $stmt->fetch();
-
-                    if (md5($_POST["password"]) === $password) {
-
-                        //Login session
-
-                        session_regenerate_id();
-                        $_SESSION['loggedin'] = TRUE;
-                        $_SESSION['username'] = $username;
-                        $_SESSION['password'] = $password;
-                        $_SESSION["utype"] = "admin";
-
-
-                        $_SESSION['log_msg'] = 'Logged In!';
-
-                        header('Location: http://localhost/tpc_miniproj/admin/');
-                        exit;
-                    } else {
-                        // Incorrect password
-                        $_SESSION['log_msg'] = 'Incorrect username and/or password!';
-                    }
-                }
+                $_SESSION['log_msg'] = "User does not exist!";
+                header('Location: http://localhost/tpc_miniproj/index.php');
             } else {
                 $stmt->bind_result(
                     $username,
