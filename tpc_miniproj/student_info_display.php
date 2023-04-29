@@ -183,8 +183,8 @@ $b_data = array(
     <br><br><br><br>
     <div class="form-center">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
-            <label for="branch">branch:</label>
-            <input type="text" name="branch" placeholder="branch">
+            <label for="branch">Branch:</label>
+            <input type="text" name="branch" placeholder="Branch">
 
             <label for="cpi">CPI:</label>
             <input type="text" name="cpi" placeholder="CPI">

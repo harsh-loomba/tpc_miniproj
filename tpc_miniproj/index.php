@@ -44,22 +44,25 @@ if (isset($_SESSION['log_msg'])) {
     </script>
     <style>
         .form-center {
-            display:flex;
-            justify-content:center;
+            display: flex;
+            justify-content: center;
         }
+
         .center {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100px;
-            border: 3px solid #fff;;
+            border: 3px solid #fff;
+            ;
         }
-        .container{
+
+        .container {
             width: 100%;
             text-align: center;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="mvp.css"/>
+    <link rel="stylesheet" type="text/css" href="mvp.css" />
 </head>
 
 <body>
@@ -67,21 +70,23 @@ if (isset($_SESSION['log_msg'])) {
     <!-- Login form -->
     <br>
     <div class="form-center">
-    <form method="post" action="validate.php" name="Login">
+        <form method="post" action="validate.php" name="Login">
 
-        <!-- Printing log message -->
-        <div class="container">
-        <span style="color:red;"><?= $log ?></span>
-        </div>
-        <br>
+            <h1 style='padding-left:2px'>Login</h1>
 
-        <input placeholder="Username" type="text" id="uname" name="uname" title="Invalid username." required size="30"/>
-        <br>
+            <!-- Printing log message -->
+            <div class="container">
+                <span style="color:red;"><?= $log ?></span>
+            </div>
+            <br>
 
-        <input placeholder="Password" type="password" name="password" pattern=".{8,100}" title="Passwords should be 8 - 100 characters." required size="30"/>
-        <br>
+            <input placeholder="Username" type="text" id="uname" name="uname" title="Invalid username." required size="30" />
+            <br>
 
-        <!-- <label for="student">
+            <input placeholder="Password" type="password" name="password" pattern=".{8,100}" title="Passwords should be 8 - 100 characters." required size="30" />
+            <br>
+
+            <!-- <label for="student">
             <input type="radio" name="utype" onclick="ModifyPlaceHolder(this)" id="student" value="Student" checked="checked">
             Student
         </label>
@@ -102,22 +107,22 @@ if (isset($_SESSION['log_msg'])) {
         </label>
         <br> -->
 
-        <div class="center">
-        <button type="submit" value="Login">Login</button>
-        </div>
-        <br>
+            <div class="center">
+                <button type="submit" value="Login">Login</button>
+            </div>
+            <br>
 
-        <div class="container">
-        <a href="register_stud.php">Register as Student / Alumni</a>
-        </div>
-        <br>
+            <div class="container">
+                <a href="register_stud.php">Register as Student / Alumni</a>
+            </div>
+            <br>
 
-        <div class="container">
-        <a href="register_com.php">Register as Company</a>
-        </div>
-        <br>
+            <div class="container">
+                <a href="register_com.php">Register as Company</a>
+            </div>
+            <br>
 
-    </form>
+        </form>
     </div>
 
 </body>

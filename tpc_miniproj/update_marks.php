@@ -113,7 +113,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['log_msg'] = " Resume Upload Successful.";
 
                 //$file_link = '<a href="/tpc_miniproj/resume/' . $finame . '"  target="_blank">View Resume</a>';
-                
+
                 //$filesql =  "UPDATE `student` SET `resume` = '$filename' WHERE `rollno` = '$rollno'";
                 //$fileresult = mysqli_query($con, $filesql);
             } else {
@@ -281,21 +281,21 @@ if (isset($_SESSION['log_msg'])) {
 
     <!-- Printing log message -->
     <div class="container">
-    <span style="color:red;"><?= $log ?></span><br>
+        <span style="color:red;"><?= $log ?></span><br>
     </div>
 
     <div class="form-center">
-    <form method="post" name="Update Marks">
+        <form method="post" name="Update Marks">
 
-        Grade 10: <input placeholder="Grade 10" name="grade10" type="number" min=0 max=100 step=0.01 required value="<?= $_SESSION['grade10'] ?>"><br>
-        Grade 12: <input placeholder="Grade 12" name="grade12" type="number" min=0 max=100 step=0.01 required value="<?= $_SESSION['grade12'] ?>"><br>
-        CPI: <input placeholder="CPI" name="CPI" type="number" min=0 max=10 step=0.01 required value="<?= $_SESSION['CPI'] ?>"><br>
+            Grade 10: <input placeholder="Grade 10" name="grade10" type="number" min=0 max=100 step=0.01 required value="<?= $_SESSION['grade10'] ?>"><br>
+            Grade 12: <input placeholder="Grade 12" name="grade12" type="number" min=0 max=100 step=0.01 required value="<?= $_SESSION['grade12'] ?>"><br>
+            CPI: <input placeholder="CPI" name="CPI" type="number" min=0 max=10 step=0.01 required value="<?= $_SESSION['CPI'] ?>"><br>
 
-        <div class="center">
-        <button type="submit">Save</button>
-        </div>
-        <br>
-    </form>
+            <div class="center">
+                <button type="submit">Save</button>
+            </div>
+            <br>
+        </form>
     </div>
 
     <br>
@@ -305,64 +305,63 @@ if (isset($_SESSION['log_msg'])) {
 
     <br>
     <div class="form-center">
-    <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data">
 
-        <label>Upload Resume</label>
-        <span class="btn btn-default btn-file">
-            <input name="resume" type="file">
-        </span>
-        <br />
-        <div class="container">
-        <input type="submit" name="submit" class="btn-success" value="submit">
-        </div>
-    </form>
+            <label>Upload Resume</label>
+            <span class="btn btn-default btn-file">
+                <input name="resume" type="file">
+            </span>
+            <br />
+            <div class="container">
+                <input type="submit" name="submit" class="btn-success" value="Submit">
+            </div>
+        </form>
     </div>
     <br>
 
     <div class="container">
-    <a href="http://localhost/tpc_miniproj/resume/<?= $_SESSION['rollno'] ?>_resume.pdf" target="_blank" >View Resume</a>
+        <a href="http://localhost/tpc_miniproj/resume/<?= $_SESSION['rollno'] ?>_resume.pdf" target="_blank">View Resume</a>
     </div>
     <br>
     <br>
 
     <div class="form-center">
-    <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data">
 
-        <label>Upload Transcript</label>
-        <span class="btn btn-default btn-file">
-            <input name="transcript" type="file">
-        </span>
-        <br />
-        <div class="container">
-        <input type="submit" name="tsubmit" class="btn-success" value="submit">
-        </div>
-    </form>
+            <label>Upload Transcript</label>
+            <span class="btn btn-default btn-file">
+                <input name="transcript" type="file">
+            </span>
+            <br />
+            <div class="container">
+                <input type="submit" name="tsubmit" class="btn-success" value="Submit">
+            </div>
+        </form>
     </div>
     <br>
 
     <div class="container">
-    <a href="http://localhost/tpc_miniproj/transcript/<?= $_SESSION['rollno'] ?>_transcript.pdf" target="_blank" >View Transcript</a>
-    </div>
-    <br>
-    
-    <div class="container">
-    <span id='message'></span>
+        <a href="http://localhost/tpc_miniproj/transcript/<?= $_SESSION['rollno'] ?>_transcript.pdf" target="_blank">View Transcript</a>
     </div>
     <br>
 
     <div class="container">
+        <span id='message'></span>
+    </div>
+
+    <!-- <div class="container">
     <a href='http://localhost/tpc_miniproj/change_password.php/'>Change Password</a>
     </div>
-    <br>
+    <br> -->
 
     <div class="container">
-    <?php
-    if ($_SESSION['alumnus']) {
-        echo "<a href='http://localhost/tpc_miniproj/alumni/index.php'>Back to Home</a>";
-    } else {
-        echo "<a href='http://localhost/tpc_miniproj/student/index.php'>Back to Home</a>";
-    }
-    ?>
+        <?php
+        if ($_SESSION['alumnus']) {
+            echo "<a href='http://localhost/tpc_miniproj/alumni/index.php'>Back to Home</a>";
+        } else {
+            echo "<a href='http://localhost/tpc_miniproj/student/index.php'>Back to Home</a>";
+        }
+        ?>
     </div>
     <br>
 
