@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2023 at 06:53 PM
+-- Generation Time: Apr 29, 2023 at 08:07 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -60,9 +60,6 @@ CREATE TABLE `alumni_placement` (
 -- Dumping data for table `alumni_placement`
 --
 
-INSERT INTO `alumni_placement` (`rollno`, `com_name`, `CTC`, `field_of_work`, `position`, `location`, `from_yr`, `to_yr`) VALUES
-('1701CS32', 'Google', 1230000, 'SWE', 'SWE', 'maah', 2020, 2023);
-
 -- --------------------------------------------------------
 
 --
@@ -83,9 +80,6 @@ CREATE TABLE `company` (
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`username`, `email`, `password`, `com_name`, `rep_name`, `phone`, `recruit_yr`) VALUES
-('googs', 'google@gmail.com', '589065d67d5a557898f4183950ec58cf', 'Google', 'hui hiu', '1234567890', 2010);
-
 -- --------------------------------------------------------
 
 --
@@ -102,11 +96,6 @@ CREATE TABLE `company_cutoff` (
 --
 -- Dumping data for table `company_cutoff`
 --
-
-INSERT INTO `company_cutoff` (`username`, `course`, `branch`, `cutoff`) VALUES
-('googs', 'B.Tech. / B.S.', 'AI', 7.5),
-('googs', 'B.Tech. / B.S.', 'CS', 7),
-('googs', 'B.Tech. / B.S.', 'EE', 8.5);
 
 -- --------------------------------------------------------
 
@@ -125,10 +114,6 @@ CREATE TABLE `company_interview` (
 -- Dumping data for table `company_interview`
 --
 
-INSERT INTO `company_interview` (`username`, `round`, `mode`, `type`) VALUES
-('googs', 1, 'Online', 'Coding'),
-('googs', 2, 'Offline', 'Interview');
-
 -- --------------------------------------------------------
 
 --
@@ -146,12 +131,6 @@ CREATE TABLE `company_job` (
 -- Dumping data for table `company_job`
 --
 
-INSERT INTO `company_job` (`username`, `field`, `position`, `package`) VALUES
-('googs', 'software engineering', 'SWE', 10),
-('googs', 'software engineering', 'Database Engineer', 1200),
-('googs', 'meh', 'Database Engineer', 123),
-('googs', 'meh', 'Database Engineer', 123),
-('googs', 'mooh', 'SWE', 654);
 
 -- --------------------------------------------------------
 
@@ -178,13 +157,7 @@ CREATE TABLE `student` (
 
 --
 -- Dumping data for table `student`
---
-
-INSERT INTO `student` (`rollno`, `email`, `password`, `first_name`, `middle_name`, `last_name`, `phone`, `course`, `branch`, `grad_yr`, `is_alumnus`, `grade10`, `grade12`, `CPI`) VALUES
-('1701CS32', 'sparsh_1701cs32@iitp.ac.in', '25f9e794323b453885f5181f1b624d0b', 'Sparsh', 'Saarubhai', 'Mittal', '1234567890', 'B.Tech.', 'CS', 2022, 1, NULL, NULL, NULL),
-('2101AI42', 'tejas_2101ai42@iitp.ac.in', '25f9e794323b453885f5181f1b624d0b', 'Tejas', '', 'Budhwal', '1234567890', 'B.Tech.', 'AI', 2025, 0, NULL, NULL, NULL),
-('2101CS32', 'harsh_2101cs32@iitp.ac.in', '31f5254220360cf7c2121f6e2e4fa9e4', 'Harsh', '', 'Loomba', '9414707653', 'B.Tech.', 'CS', 2025, 0, 94.8, 95, 9.17);
-
+--\
 -- --------------------------------------------------------
 
 --
@@ -213,13 +186,6 @@ CREATE TABLE `student_placement` (
   `year` year(4) NOT NULL,
   `offcampus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `student_placement`
---
-
-INSERT INTO `student_placement` (`rollno`, `is_intern`, `com_name`, `CTC`, `field_of_work`, `position`, `location`, `year`, `offcampus`) VALUES
-('2101CS32', 1, 'Google', 120000, 'SWE', 'Database Engineer', 'maah', 2023, 0);
 
 --
 -- Indexes for dumped tables
