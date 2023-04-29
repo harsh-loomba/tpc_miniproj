@@ -70,25 +70,31 @@ if (isset($_SESSION['log_msg'])) {
     </script>
 
     <style>
-        h1 {text-align: center;}
-        .form-center {
-            display:flex;
-            justify-content:center;
+        h1 {
+            text-align: center;
         }
-        .container{
+
+        .form-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
             width: 100%;
             text-align: center;
         }
+
         .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50px;
-        border: 3px solid #fff;;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            border: 3px solid #fff;
+            ;
         }
     </style>
 
-    <link rel="stylesheet" type="text/css" href="../mvp.css"/>
+    <link rel="stylesheet" type="text/css" href="../mvp.css" />
 </head>
 
 <body>
@@ -96,38 +102,87 @@ if (isset($_SESSION['log_msg'])) {
     <div class="session">
 
 
+        <h1>Add Jobs</h1>
+        <br><br>
+
+        <div class="center">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Position</th>
+                        <th>Package</th>
+                    </tr>
+                </thead>
+                <?php
+                // Connect to the database
+                $conn = mysqli_connect("localhost", "root", "", "tpc_miniproj");
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Retrieve data from the table
+                $uname = $_SESSION['username'];
+                $sql = "SELECT `field`, `position`, `package` FROM `company_job` WHERE `username` = '$uname'";
+
+                $result = $conn->query($sql);
+
+
+                // Display the data in the table
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tbody>";
+                        echo "<tr>";
+                        echo "<td>" . $row["field"] . "</td>";
+                        echo "<td>" . $row["position"] . "</td>";
+                        echo "<td>" . $row["package"] . "</td>";
+                        echo "</tr>";
+                        echo "</tbody>";
+                    }
+                } else {
+                    echo "<tbody>";
+                    echo "<tr>";
+                    echo "<td colspan='8'>No Data Available</td>";
+                    echo "</tr>";
+                    echo "</tbody>";
+                }
+                $conn->close();
+                ?>
+            </table>
+        </div>
+        <br><br><br>
+
+
         <!-- Register form -->
         <div class="form-center">
-        <form method="post" action="" name="add_job">
+            <form method="post" action="" name="add_job">
 
-            <h1>Add Jobs</h1>
+                <!-- Printing log message -->
+                <div class="container">
+                    <span style="color:red;"><?= $log ?></span>
+                </div>
+                <br>
 
-            <!-- Printing log message -->
-            <div class="container">
-            <span style="color:red;"><?= $log ?></span>
-            </div>
-            <br>
+                <input placeholder="Field" type="text" name="field" required size="30" />
+                <br>
 
-            <input placeholder="Field" type="text" name="field" required size="30"/>
-            <br>
+                <input placeholder="Position" type="text" name="position" required size="30" />
+                <br>
 
-            <input placeholder="Position" type="text" name="position" required size="30"/>
-            <br>
-            
-            <div class="center">
-            <input placeholder="Package" type="number" name="package" required/>
-            </div>
-            <br>
+                <div class="center">
+                    <input placeholder="Package" type="number" name="package" required />
+                </div>
+                <br>
 
-            <div class="center">
-            <button type="submit">Add Job</button>
-            </div>
-            <br>
+                <div class="center">
+                    <button type="submit">Add Job</button>
+                </div>
+                <br>
 
-            <div class="container">
-            <a href="index.php">Back to Home</a>
-            </div>
-        </form>
+                <div class="container">
+                    <a href="index.php">Back to Home</a>
+                </div>
+            </form>
         </div>
     </div>
 </body>

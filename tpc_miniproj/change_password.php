@@ -243,49 +243,51 @@ if (isset($_SESSION['log_msg'])) {
 
     <!-- Printing log message -->
     <div class="container">
-    <span style="color:red;"><?= $log ?></span><br>
+        <span style="color:red;"><?= $log ?></span><br>
     </div>
 
     <div class="form-center">
-    <form method="post" name="Edit Phone">
-        <input placeholder="New Password" type="password" id="new_pass" name="new_pass" pattern=".{8,100}" title="Passwords should be 8 - 100 characters." onkeyup='check();' required size="30"/>
-        <br>
+        <form method="post" name="Edit Phone">
+            <input placeholder="New Password" type="password" id="new_pass" name="new_pass" pattern=".{8,100}" title="Passwords should be 8 - 100 characters." onkeyup='check();' required size="30" />
+            <br>
 
-        <input placeholder="Confirm Password" type="password" id="confirm_pass" name="confirm_pass" onkeyup='check();' required size="30"/>
-        <br>
+            <input placeholder="Confirm Password" type="password" id="confirm_pass" name="confirm_pass" onkeyup='check();' required size="30" />
+            <br>
 
-        <input placeholder="Password" type="password" id="password" name="password" pattern=".{8,100}" title="Passwords should be 8 - 100 characters." required size="30"/>
-        <br>
+            <input placeholder="Password" type="password" id="password" name="password" pattern=".{8,100}" title="Passwords should be 8 - 100 characters." required size="30" />
+            <br>
 
-        <div class="container">
-        <span id='message'></span>
-        </div>
-        <br>
+            <div class="container">
+                <span id='message'></span>
+            </div>
+            <br>
 
-        <div class="center">
-        <button type="submit">Submit</button>
-        </div>
-        <br>
-    </form>
+            <div class="center">
+                <button type="submit">Submit</button>
+            </div>
+            <br>
+        </form>
     </div>
 
     <br>
 
     <div class="container">
-    <?php
-    if (isset($_SESSION['utype'])) {
-        if ($_SESSION['utype'] == "alumnus") {
-            echo "<a href='http://localhost/tpc_miniproj/profile_stud.php'>Back to Profile</a><br><br>";
-            echo "<a href='http://localhost/tpc_miniproj/alumni/index.php'>Back to Home</a>";
-        } else if ($_SESSION['utype'] == 'student') {
-            echo "<a href='http://localhost/tpc_miniproj/profile_stud.php'>Back to Profile</a><br><br>";
-            echo "<a href='http://localhost/tpc_miniproj/student/index.php'>Back to Home</a>";
-        } else if ($_SESSION['utype'] == 'company') {
-            echo "<a href='http://localhost/tpc_miniproj/company/profile_com.php'>Back to Profile</a><br><br>";
-            echo "<a href='http://localhost/tpc_miniproj/company/index.php'>Back to Home</a>";
+        <?php
+        if (isset($_SESSION['utype'])) {
+            if ($_SESSION['utype'] == "alumnus") {
+                echo "<a href='http://localhost/tpc_miniproj/profile_stud.php'>Back to Profile</a><br><br>";
+                echo "<a href='http://localhost/tpc_miniproj/alumni/index.php'>Back to Home</a>";
+            } else if ($_SESSION['utype'] == 'student') {
+                echo "<a href='http://localhost/tpc_miniproj/profile_stud.php'>Back to Profile</a><br><br>";
+                echo "<a href='http://localhost/tpc_miniproj/student/index.php'>Back to Home</a>";
+            } else if ($_SESSION['utype'] == 'company') {
+                echo "<a href='http://localhost/tpc_miniproj/company/profile_com.php'>Back to Profile</a><br><br>";
+                echo "<a href='http://localhost/tpc_miniproj/company/index.php'>Back to Home</a>";
+            } else if ($_SESSION['utype'] == 'admin') {
+                echo "<a href='http://localhost/tpc_miniproj/admin/index.php'>Back to Home</a>";
+            }
         }
-    }
-    ?>
+        ?>
     </div>
 </body>
 

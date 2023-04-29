@@ -19,6 +19,18 @@ include_once('../connection.php');
 //Connect to database
 $con = getDB();
 
+$b_data = array(
+    'AI' => "Artificial Intelligence and Data Science",
+    'CB' => "Chemical Engineering",
+    'CE' => "Civil and Environmental Engineering",
+    'CS' => "Computer Science and Engineering",
+    'EE' => "Electrical and Electronics Engineering",
+    'MC' => "Mathematics and Computing",
+    'ME' => "Mechanical Engineering",
+    'MM' => "Materials and Metallurgical Engineering",
+    'PH' => "Engineering Physics"
+);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //If all parameters present in post
@@ -93,86 +105,141 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 
     <style>
-        h1 {text-align: center;}
-        .form-center {
-            display:flex;
-            justify-content:center;
+        h1 {
+            text-align: center;
         }
-        .container{
+
+        .form-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
             width: 100%;
             text-align: center;
         }
+
         .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50px;
-        border: 3px solid #fff;;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            border: 3px solid #fff;
+            ;
         }
     </style>
 
-    <link rel="stylesheet" type="text/css" href="../mvp.css"/>
+    <link rel="stylesheet" type="text/css" href="../mvp.css" />
 </head>
 
 <body>
     <br>
     <div class="session">
 
+        <h1>Set Eligibility Criteria</h1>
+        <br><br>
+
+        <div class="center">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Branch</th>
+                        <th>Cutoff</th>
+                    </tr>
+                </thead>
+                <?php
+                // Connect to the database
+                $conn = mysqli_connect("localhost", "root", "", "tpc_miniproj");
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Retrieve data from the table
+                $uname = $_SESSION['username'];
+                $sql = "SELECT `course`, `branch`, `cutoff` FROM `company_cutoff` WHERE `username` = '$uname'";
+
+                $result = $conn->query($sql);
+
+
+                // Display the data in the table
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tbody>";
+                        echo "<tr>";
+                        echo "<td>" . $row["course"] . "</td>";
+                        echo "<td>" . $b_data[$row["branch"]] . "</td>";
+                        echo "<td>" . $row["cutoff"] . "</td>";
+                        echo "</tr>";
+                        echo "</tbody>";
+                    }
+                } else {
+                    echo "<tbody>";
+                    echo "<tr>";
+                    echo "<td colspan='8'>No Data Available</td>";
+                    echo "</tr>";
+                    echo "</tbody>";
+                }
+                $conn->close();
+                ?>
+            </table>
+        </div>
+        <br><br><br>
+
+
 
         <!-- Register form -->
         <div class="form-center">
-        <form method="post" action="" name="add_job">
+            <form method="post" action="" name="add_job">
 
-            <h1>Set Eligibility Criteria</h1>
+                <!-- Printing log message -->
+                <div class="container">
+                    <span style="color:red;"><?= $log ?></span>
+                </div>
+                <br>
 
-            <!-- Printing log message -->
-            <div class="container">
-            <span style="color:red;"><?= $log ?></span>
-            </div>
-            <br>
+                Course:
+                <select id="course" name="course" required>
+                    <label for="course">
+                        Course
+                    </label>
 
-            Course:
-            <select id="course" name="course" required>
-                <label for="course">
-                    Course
-                </label>
+                    <option value="B.Tech. / B.S.">B.Tech. / B.S.</option>
+                    <option value="M.Tech.">M.Tech.</option>
+                    <option value="Ph.D.">Ph.D.</option>
+                </select>
+                <br>
+                Branch:
+                <select id="branch" name="branch" required>
+                    <label for="branch">
+                        Branch
+                    </label>
+                    <option selected=true disabled=true>Select Branch</option>
+                    <option value="AI">Artificial Intelligence and Data Science</option>
+                    <option value="CB">Chemical Engineering</option>
+                    <option value="CE">Civil and Environmental Engineering</option>
+                    <option value="CS">Computer Science and Engineering</option>
+                    <option value="EE">Electrical and Electronics Engineering</option>
+                    <option value="MC">Mathematics and Computing</option>
+                    <option value="ME">Mechanical Engineering</option>
+                    <option value="MM">Materials and Metallurgical Engineering</option>
+                    <option value="PH">Engineering Physics</option>
 
-                <option value="B.Tech. / B.S.">B.Tech. / B.S.</option>
-                <option value="M.Tech.">M.Tech.</option>
-                <option value="Ph.D.">Ph.D.</option>
-            </select>
-            <br>
-            Branch:
-            <select id="branch" name="branch" required>
-                <label for="branch">
-                    Branch
-                </label>
-                <option selected=true disabled=true>Select Branch</option>
-                <option value="AI">Artificial Intelligence and Data Science</option>
-                <option value="CB">Chemical Engineering</option>
-                <option value="CE">Civil and Environmental Engineering</option>
-                <option value="CS">Computer Science and Engineering</option>
-                <option value="EE">Electrical and Electronics Engineering</option>
-                <option value="MC">Mathematics and Computing</option>
-                <option value="ME">Mechanical Engineering</option>
-                <option value="MM">Materials and Metallurgical Engineering</option>
-                <option value="PH">Engineering Physics</option>
+                </select>
+                <br>
 
-            </select>
-            <br>
+                Cutoff CPI: <input placeholder="cutoff" name="cutoff" type="number" min=0 max=10 step=0.01 required>
+                <br>
 
-            Cutoff CPI: <input placeholder="cutoff" name="cutoff" type="number" min=0 max=10 step=0.01 required>
-            <br>
+                <div class="center">
+                    <button type="submit">Add / Update Criteria</button>
+                </div>
+                <br>
 
-            <div class="center">
-            <button type="submit">Add / Update Criteria</button>
-            </div>
-            <br>
-
-            <div class="container">
-            <a href="index.php">Back to Home</a>
-            </div>
-        </form>
+                <div class="container">
+                    <a href="index.php">Back to Home</a>
+                </div>
+            </form>
         </div>
     </div>
 </body>

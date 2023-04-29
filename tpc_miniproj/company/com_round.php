@@ -92,83 +92,139 @@ if (isset($_SESSION['log_msg'])) {
     </script>
 
     <style>
-        h1 {text-align: center;}
-        .form-center {
-            display:flex;
-            justify-content:center;
+        h1 {
+            text-align: center;
         }
-        .container{
+
+        .form-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
             width: 100%;
             text-align: center;
         }
+
         .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50px;
-        border: 3px solid #fff;;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            border: 3px solid #fff;
+            ;
         }
     </style>
 
-    <link rel="stylesheet" type="text/css" href="../mvp.css"/>
+    <link rel="stylesheet" type="text/css" href="../mvp.css" />
 </head>
 
 <body>
     <br>
     <div class="session">
 
+        <h1>Placement Round Details</h1>
+        <br><br>
+
+        <div class="center">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Round</th>
+                        <th>Mode</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <?php
+                // Connect to the database
+                $conn = mysqli_connect("localhost", "root", "", "tpc_miniproj");
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Retrieve data from the table
+                $uname = $_SESSION['username'];
+                $sql = "SELECT `round`, `mode`, `type` FROM `company_interview` WHERE `username` = '$uname'";
+
+                $result = $conn->query($sql);
+
+
+                // Display the data in the table
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tbody>";
+                        echo "<tr>";
+                        echo "<td>" . $row["round"] . "</td>";
+                        echo "<td>" . $row["mode"] . "</td>";
+                        echo "<td>" . $row["type"] . "</td>";
+                        echo "</tr>";
+                        echo "</tbody>";
+                    }
+                } else {
+                    echo "<tbody>";
+                    echo "<tr>";
+                    echo "<td colspan='8'>No Data Available</td>";
+                    echo "</tr>";
+                    echo "</tbody>";
+                }
+                $conn->close();
+                ?>
+            </table>
+        </div>
+        <br><br><br>
+
+
+
 
         <!-- Register form -->
         <div class="form-center">
-        <form method="post" action="" name="add_job">
+            <form method="post" action="" name="add_job">
 
-            <h1>Set Eligibility Criteria</h1>
+                <!-- Printing log message -->
+                <div class="container">
+                    <span style="color:red;"><?= $log ?></span>
+                </div>
+                <br>
 
-            <!-- Printing log message -->
-            <div class="container">
-            <span style="color:red;"><?= $log ?></span>
-            </div>
-            <br>
+                Round No.: <input placeholder="Round" name="round" type="number" min=1 step=1 value=1 required>
+                <br>
 
-            Round No.: <input placeholder="Round" name="round" type="number" min=1 step=1 value=1 required>
-            <br>
+                Mode of Conduction:
+                <select id="mode" name="mode" required>
+                    <label for="mode">
+                        Mode
+                    </label>
 
-            Mode of Conduction:
-            <select id="mode" name="mode" required>
-                <label for="mode">
-                    Mode
-                </label>
+                    <option selected=true disabled=true>Select</option>
 
-                <option selected=true disabled=true>Select</option>
+                    <option value="Online">Online</option>
+                    <option value="Offline">Offline</option>
+                </select>
+                <br>
 
-                <option value="Online">Online</option>
-                <option value="Offline">Offline</option>
-            </select>
-            <br>
+                Round Type:
+                <select id="type" name="type" required>
+                    <label for="mode">
+                        Type
+                    </label>
 
-            Round Type:
-            <select id="type" name="type" required>
-                <label for="mode">
-                    Type
-                </label>
+                    <option selected=true disabled=true>Select</option>
 
-                <option selected=true disabled=true>Select</option>
+                    <option value="Written">Written</option>
+                    <option value="Coding">Coding</option>
+                    <option value="Interview">Interview</option>
+                </select>
+                <br>
 
-                <option value="Written">Written</option>
-                <option value="Coding">Coding</option>
-                <option value="Interview">Interview</option>
-            </select>
-            <br>
+                <div class="center">
+                    <button type="submit">Add / Update Round</button>
+                </div>
+                <br>
 
-            <div class="center">
-            <button type="submit">Add / Update Round</button>
-            </div>
-            <br>
-
-            <div class="container">
-            <a href="index.php">Back to Home</a>
-            </div>
-        </form>
+                <div class="container">
+                    <a href="index.php">Back to Home</a>
+                </div>
+            </form>
         </div>
     </div>
 </body>
