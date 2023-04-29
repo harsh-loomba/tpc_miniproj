@@ -162,7 +162,7 @@ if (isset($_SESSION['log_msg'])) {
     <br>
 
     <div class="container">
-    <a href='http://localhost/tpc_miniproj/change_password.php/'>Change Password</a>
+    <a href='http://localhost/tpc_miniproj/change_password.php'>Change Password</a>
     </div>
     <br>
 
