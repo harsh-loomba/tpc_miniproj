@@ -107,43 +107,43 @@ if (isset($_SESSION['log_msg'])) {
     <h1>Placement Info</h1>
     <br>
     <div class="form-center">
-    <form method="post" action="" name="placement">
+        <form method="post" action="" name="placement">
 
-        <span style="color:red;"><?= $log ?></span>
-        <br>
+            <span style="color:red;"><?= $log ?></span>
+            <br>
 
-        <input placeholder="Company Name" type="text" pattern=".{0,256}" name="com_name" required />
-        <br>
+            <input placeholder="Company Name" type="text" pattern=".{0,256}" name="com_name" required />
+            <br>
+            (Optional)
+            <input placeholder="CTC" type="number" name="CTC" />
+            <br>
 
-        <input placeholder="CTC" type="number" name="CTC" />(Optional)
-        <br>
+            <input placeholder="Field of Work" type="text" pattern=".{0,256}" name="field_of_work" required />
+            <br>
 
-        <input placeholder="Field of Work" type="text" pattern=".{0,256}" name="field_of_work" required />
-        <br>
+            <input placeholder="Position" type="text" pattern=".{0,256}" name="position" required />
+            <br>
 
-        <input placeholder="Position" type="text" pattern=".{0,256}" name="position" required />
-        <br>
+            <input placeholder="Location" type="text" pattern=".{0,256}" name="location" required />
+            <br>
 
-        <input placeholder="Location" type="text" pattern=".{0,256}" name="location" required />
-        <br>
+            From Year: <input id="from_year" name="from_year" type="number" min="2008" max="2099" step="1" required />
+            <br>
 
-        From Year: <input id="from_year" name="from_year" type="number" min="2008" max="2099" step="1" required />
-        <br>
+            To Year: (leave empty if currently working) <input id="to_year" name="to_year" type="number" min="2008" max="2099" step="1" required />
+            <br>
 
-        To Year: (leave empty if currently working) <input id="to_year" name="to_year" type="number" min="2008" max="2099" step="1" required />
-        <br>
+            <div class="center">
+                <button type="submit">Add Placement Info</button>
+            </div>
+            <br>
 
-        <div class="center">
-        <button type="submit">Add Placement Info</button>
-        </div>
-        <br>
-
-    </form>
+        </form>
     </div>
 
     <br>
     <div class="container">
-    <a href="index.php">Back to Home</a>
+        <a href="index.php">Back to Home</a>
     </div>
 
 </body>
